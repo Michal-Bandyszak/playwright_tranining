@@ -2,7 +2,11 @@
   "name": "pw",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed":  "npx playwright test --headed",
+    "test:desktop": "npm run test tests/desktop.spec.ts"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

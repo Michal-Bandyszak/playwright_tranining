@@ -1,14 +1,16 @@
 import { test, expect } from '@playwright/test';
+import { LoginPage } from '../pages/login.page';
 
 test.describe('desktop tests', () => {
   test.beforeEach(async ({ page }) => {
     const userId = 'testerLO';
     const userPassword = '10987654';
+    const loginPage = new LoginPage(page)
 
     await page.goto('/');
-    await page.getByTestId('login-input').fill(userId);
-    await page.getByTestId('password-input').fill(userPassword);
-    await page.getByTestId('login-button').click();
+    await loginPage.loginInput.fill(userId)
+    await loginPage.passwordInput.fill(userPassword)
+    await loginPage.loginButton.click()
   });
 
   test('quick payment with correct data', async ({ page }) => {
