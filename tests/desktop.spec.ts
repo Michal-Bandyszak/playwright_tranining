@@ -21,15 +21,10 @@ test.describe('desktop tests', () => {
     const transferAmount = '150';
     const transferTitle = 'pizza';
     const expectedTransferReceiver = 'Chuck Demobankowy';
-    const desktop = new DesktopPage(page)
+    const desktop = new DesktopPage(page);
 
     // Act
-    await desktop.transfer_reciever.selectOption(receiverId);
-    await desktop.transfer_amount.fill(transferAmount);
-    await desktop.transfer_title.fill(transferTitle);
-
-    await desktop.execute.click();
-    await desktop.close_btn.click();
+    await desktop.transfer(receiverId, transferAmount, transferTitle);
 
     // Assert
     await expect(desktop.show_message).toHaveText(
@@ -42,14 +37,10 @@ test.describe('desktop tests', () => {
     const topUpReceiver = '500 xxx xxx';
     const topUpAmount = '50';
     const expectedMessage = `Doładowanie wykonane! ${topUpAmount},00PLN na numer ${topUpReceiver}`;
-    const desktop = new DesktopPage(page)
+    const desktop = new DesktopPage(page);
 
     // Act
-    await desktop.topup_receiver.selectOption(topUpReceiver);
-    await desktop.topup_amount.fill(topUpAmount);
-    await desktop.topup_agreement.click();
-    await desktop.top_up.click();
-    await desktop.close_btn.click();
+    await desktop.topup(topUpReceiver, topUpAmount);
 
     // Assert
     await expect(desktop.show_message).toHaveText(expectedMessage);

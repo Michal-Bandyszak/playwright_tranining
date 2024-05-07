@@ -1,18 +1,17 @@
-import { Page } from "@playwright/test";
+import { Page } from '@playwright/test';
 
 export class LoginPage {
-    constructor(private page: Page) {}
-    loginInput = this.page.getByTestId('login-input')
-    passwordInput = this.page.getByTestId('password-input')
-    loginButton = this.page.getByTestId('login-button')
+  constructor(private page: Page) {}
+  loginInput = this.page.getByTestId('login-input');
+  passwordInput = this.page.getByTestId('password-input');
+  loginButton = this.page.getByTestId('login-button');
 
-    loginError_id = this.page.getByTestId('error-login-id')
-    loginError_password = this.page.getByTestId('error-login-password')
+  loginError_id = this.page.getByTestId('error-login-id');
+  loginError_password = this.page.getByTestId('error-login-password');
 
-    async login(userId: string, userPassword: string): Promise<void> {
-        await this.loginInput.fill(userId);
-        await this.passwordInput.fill(userPassword);
-        await this.loginButton.click();
-    }
-
+  async login(userId: string, userPassword: string): Promise<void> {
+    await this.loginInput.fill(userId);
+    await this.passwordInput.fill(userPassword);
+    await this.loginButton.click();
+  }
 }

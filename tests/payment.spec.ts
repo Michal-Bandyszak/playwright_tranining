@@ -10,14 +10,14 @@ test.describe('payments tests', () => {
     const userId = loginData.userId;
     const userPassword = loginData.userPassword;
     loginPage = new LoginPage(page);
-    const desktopPage = new DesktopPage(page)
+    const desktopPage = new DesktopPage(page);
 
     await page.goto('/');
     await loginPage.login(userId, userPassword);
     await desktopPage.sideMenuComponent.paymentLink.click();
   });
 
-  test.only('single payment', async ({ page }) => {
+  test('single payment', async ({ page }) => {
     //Arrange
     const transferReceiver = 'Jan Nowak';
     const transferAccount = '12 3456 7890 1234 5678 9012 34568';
@@ -26,7 +26,11 @@ test.describe('payments tests', () => {
     const payment = new PaymentPage(page);
 
     // Act
-    await payment.makeTransfer(transferReceiver, transferAccount, transferAmount)
+    await payment.makeTransfer(
+      transferReceiver,
+      transferAccount,
+      transferAmount
+    );
     // Assert
     await expect(payment.show_message).toHaveText(expectedMessage);
   });
